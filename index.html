@@ -97,19 +97,19 @@
 <body>
 
     <div class="container">
-        <h1>Інструкції з охорони праці на робочому місці для дільниці Пакування</h1>
+        <h1>Інструкції з охорони праці на робочому місці для дільниці Пакування (комплектування, MasterBox)</h1>
 
         <ol id="instruction-list">
     <li data-file="vstup">Вступ</li>
-    <li data-file="iop3">1. ІОП №3 Для присвоєння 1 групи з електробезпеки</li>
-    <li data-file="iop5">2. ІОП №5 При користуванні електропобутовими приладами та офісною оргтехнікою</li>
-    <li data-file="iop11">3. ІОП №11 При роботі з ізопропиловим спиртом</li>
-    <li data-file="iop13">4. ІОП №13 При роботі з ручними візками</li>
-    <li data-file="iop14">5. ІОП №14 При виконанні вантажно-розвантажувальних робіт</li>
-    <li data-file="iop17">6. ІОП №17 Для комплектувальника</li>
-    <li data-file="iop41">7. ІОП №41 Для оператора лінії (сортувальника)</li>
-    <li data-file="iop47">8. ІОП №47 Для користувача ПЕОМ</li>
-    <li><a href="first_aid.html">11. Порядок надання домедичної допомоги</a></li>
+    <li data-file="iop3"> ІОП №3 Для присвоєння 1 групи з електробезпеки</li>
+    <li data-file="iop5"> ІОП №5 При користуванні електропобутовими приладами та офісною оргтехнікою</li>
+    <li data-file="iop11"> ІОП №11 При роботі з ізопропиловим спиртом</li>
+    <li data-file="iop13"> ІОП №13 При роботі з ручними візками</li>
+    <li data-file="iop14"> ІОП №14 При виконанні вантажно-розвантажувальних робіт</li>
+    <li data-file="iop17"> ІОП №17 Для комплектувальника</li>
+    <li data-file="iop41"> ІОП №41 Для оператора лінії (сортувальника)</li>
+    <li data-file="iop47"> ІОП №47 Для користувача ПЕОМ</li>
+    <li><a href="first_aid.html"> Порядок надання домедичної допомоги</a></li>
 </ol>
     </div>
 
@@ -188,7 +188,7 @@
     function adjustSpeed(delta) {
         let newSpeed = audioPlayer.playbackRate + delta;
         if (newSpeed < 1.0) newSpeed = 1.0;
-        if (newSpeed > 2.0) newSpeed = 2.0;
+        if (newSpeed > 1.5) newSpeed = 1.5;
         audioPlayer.playbackRate = newSpeed;
         speedDisplay.textContent = newSpeed.toFixed(2);
     }
