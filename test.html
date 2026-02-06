@@ -81,21 +81,22 @@
             cursor: pointer;
             text-transform: uppercase;
             margin-top: 20px;
+            transition: all 0.3s ease;
         }
-        .btn-submit:hover {
+        .btn-submit:hover:not(:disabled) {
             background-color: #e6b800;
+        }
+        /* Стиль для заблокованої кнопки (крапку додано!) */
+        .btn-submit:disabled {
+            background-color: #555 !important;
+            color: #888;
+            cursor: not-allowed;
         }
         .back-link {
             display: inline-block;
             margin-bottom: 20px;
             color: #ccc;
             text-decoration: none;
-        }
-        btn-submit:disabled {
-        background-color: #555 !important;
-        color: #888;
-        cursor: not-allowed;
-        transform: none !important;
         }
     </style>
 </head>
@@ -158,7 +159,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn-submit">Відправити результат</button>
+        <button type="submit" class="btn-submit" id="submit-btn">Відправити результат</button>
     </form>
 </div>
 
@@ -166,17 +167,18 @@
     document.getElementById('quiz-form').addEventListener('submit', function(e) {
         e.preventDefault();
 
-        // Тепер це поле знову існує в HTML
+        const submitBtn = document.getElementById('submit-btn');
         const surnameField = document.getElementById('surname');
-        const surname = surnameField ? surnameField.value : "Анонім";
+        const surname = surnameField.value;
         
-        const form = e.target;
-        const formData = new FormData(form);
-        
+        // Змінюємо стан кнопки
+        submitBtn.disabled = true;
+        submitBtn.innerText = "ВІДПРАВКА...";
+
+        const formData = new FormData(e.target);
         let score = 0;
         let totalQuestions = 5; 
 
-        // Рахуємо правильні відповіді
         for (let pair of formData.entries()) {
             if (pair[1] === "1") {
                 score++;
@@ -184,11 +186,7 @@
         }
 
         const percentage = Math.round((score / totalQuestions) * 100);
-
-        const data = {
-            surname: surname,
-            percentage: percentage
-        };
+        const data = { surname: surname, percentage: percentage };
 
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzpPSAeW-RQmdQcO-nB5LCwqf2f-mLOKpLunaL7DtuQS5KIBUFfyNyroucHSsbIaEwigQ/exec';
 
@@ -199,12 +197,19 @@
             body: JSON.stringify(data)
         })
         .then(() => {
-            alert(`Дякуємо, ${surname}! Ваш результат: ${percentage}%. Дані збережено.`);
-            window.location.href = 'index.html';
+            submitBtn.innerText = "ГОТОВО!";
+            submitBtn.style.backgroundColor = "#28a745"; 
+            
+            setTimeout(() => {
+                alert(`Дякуємо! Ваш результат: ${percentage}%. Дані збережено.`);
+                window.location.href = 'index.html';
+            }, 500);
         })
         .catch(error => {
             console.error('Помилка!', error);
-            alert('Сталася помилка при відправці. Перевірте з’єднання.');
+            alert('Сталася помилка при відправці.');
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Відправити результат";
         });
     });
 </script>
