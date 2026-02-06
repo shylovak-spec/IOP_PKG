@@ -30,7 +30,7 @@
         .input-group {
             margin-bottom: 30px;
         }
-        label {
+        label.main-label {
             display: block;
             margin-bottom: 10px;
             font-weight: bold;
@@ -100,50 +100,57 @@
     <h1>Тестування знань</h1>
 
     <form id="quiz-form">
-        <div class="question">
-    <p>1. Для чого проводиться інструктаж за ІОП №3 працівникам, які не обслуговують електроустановки?</p>
-    <div class="options">
-        <label><input type="radio" name="q1" value="1"> Для присвоєння І групи з електробезпеки</label>
-        <label><input type="radio" name="q1" value="0"> Для допуску до ремонту розеток</label>
-        <label><input type="radio" name="q1" value="0"> Для роботи на висоті</label>
-    </div>
-</div>
+        <div class="input-group">
+            <label for="surname" class="main-label">Ваше Прізвище:</label>
+            <input type="text" id="surname" name="surname" required placeholder="Введіть прізвище...">
+        </div>
 
-<div class="question">
-    <p>2. Яка головна вимога безпеки при роботі з ізопропіловим спиртом?</p>
-    <div class="options">
-        <label><input type="radio" name="q2" value="0"> Підігріти рідину перед використанням</label>
-        <label><input type="radio" name="q2" value="1"> Працювати у добре вентильованому приміщенні подалі від вогню</label>
-        <label><input type="radio" name="q2" value="0"> Використовувати спирт у закритих приміщеннях</label>
-    </div>
-</div>
+        <div id="questions-container">
+            <div class="question">
+                <p>1. Для чого проводиться інструктаж за ІОП №3 працівникам, які не обслуговують електроустановки?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="1" required> Для присвоєння І групи з електробезпеки</label>
+                    <label><input type="radio" name="q1" value="0"> Для допуску до ремонту розеток</label>
+                    <label><input type="radio" name="q1" value="0"> Для роботи на висоті</label>
+                </div>
+            </div>
 
-<div class="question">
-    <p>3. Яка гранична норма піднімання вантажу при чергуванні з іншою роботою встановлена для жінок (понад 18 років)?</p>
-    <div class="options">
-        <label><input type="radio" name="q3" value="0"> 15 кг</label>
-        <label><input type="radio" name="q3" value="1"> 10 кг</label>
-        <label><input type="radio" name="q3" value="0"> 20 кг</label>
-    </div>
-</div>
+            <div class="question">
+                <p>2. Яка головна вимога безпеки при роботі з ізопропіловим спиртом?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="0" required> Підігріти рідину перед використанням</label>
+                    <label><input type="radio" name="q2" value="1"> Працювати у добре вентильованому приміщенні подалі від вогню</label>
+                    <label><input type="radio" name="q2" value="0"> Використовувати спирт у закритих приміщеннях</label>
+                </div>
+            </div>
 
-<div class="question">
-    <p>4. Що категорично заборонено робити з електричними обігрівачами в робочій зоні?</p>
-    <div class="options">
-        <label><input type="radio" name="q4" value="1"> Накривати їх сторонніми предметами або одягом</label>
-        <label><input type="radio" name="q4" value="0"> Вмикати в розетку</label>
-        <label><input type="radio" name="q4" value="0"> Ставити на підлогу</label>
-    </div>
-</div>
+            <div class="question">
+                <p>3. Яка гранична норма піднімання вантажу при чергуванні з іншою роботою встановлена для жінок (понад 18 років)?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="0" required> 15 кг</label>
+                    <label><input type="radio" name="q3" value="1"> 10 кг</label>
+                    <label><input type="radio" name="q3" value="0"> 20 кг</label>
+                </div>
+            </div>
 
-<div class="question">
-    <p>5. Що забороняється користувачу ПЕОМ (комп'ютера) згідно з інструкцією?</p>
-    <div class="options">
-        <label><input type="radio" name="q5" value="0"> Дивитися на монітор під прямим кутом</label>
-        <label><input type="radio" name="q5" value="0"> Робити перерви в роботі</label>
-        <label><input type="radio" name="q5" value="1"> Самостійно ремонтувати апаратуру або класти напої поруч із клавіатурою</label>
-    </div>
-</div>
+            <div class="question">
+                <p>4. Що категорично заборонено робити з електричними обігрівачами в робочій зоні?</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="1" required> Накривати їх сторонніми предметами або одягом</label>
+                    <label><input type="radio" name="q4" value="0"> Вмикати в розетку</label>
+                    <label><input type="radio" name="q4" value="0"> Ставити на підлогу</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>5. Що забороняється користувачу ПЕОМ (комп'ютера) згідно з інструкцією?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="0" required> Дивитися на монітор під прямим кутом</label>
+                    <label><input type="radio" name="q5" value="0"> Робити перерви в роботі</label>
+                    <label><input type="radio" name="q5" value="1"> Самостійно ремонтувати апаратуру або класти напої поруч із клавіатурою</label>
+                </div>
+            </div>
+        </div>
 
         <button type="submit" class="btn-submit">Відправити результат</button>
     </form>
@@ -153,32 +160,32 @@
     document.getElementById('quiz-form').addEventListener('submit', function(e) {
         e.preventDefault();
 
-        const surname = document.getElementById('surname').value;
+        // Тепер це поле знову існує в HTML
+        const surnameField = document.getElementById('surname');
+        const surname = surnameField ? surnameField.value : "Анонім";
+        
         const form = e.target;
         const formData = new FormData(form);
         
         let score = 0;
-        let totalQuestions = 5; // Онови це число, якщо додаси більше питань
+        let totalQuestions = 5; 
 
-        // Рахуємо правильні відповіді (value="1" - це правильна відповідь)
-        for (let value of formData.values()) {
-            if (value === "1") {
+        // Рахуємо правильні відповіді
+        for (let pair of formData.entries()) {
+            if (pair[1] === "1") {
                 score++;
             }
         }
 
         const percentage = Math.round((score / totalQuestions) * 100);
 
-        // Дані для відправки
         const data = {
             surname: surname,
             percentage: percentage
         };
 
-        // URL твого Google Apps Script (ми створимо його наступним кроком)
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzpPSAeW-RQmdQcO-nB5LCwqf2f-mLOKpLunaL7DtuQS5KIBUFfyNyroucHSsbIaEwigQ/exec';
 
-        // Відправка
         fetch(scriptURL, {
             method: 'POST',
             mode: 'no-cors',
@@ -187,7 +194,7 @@
         })
         .then(() => {
             alert(`Дякуємо, ${surname}! Ваш результат: ${percentage}%. Дані збережено.`);
-            window.location.href = 'index.html'; // Повертаємо на головну
+            window.location.href = 'index.html';
         })
         .catch(error => {
             console.error('Помилка!', error);
