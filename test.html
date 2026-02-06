@@ -3,150 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Аудіоінструкції - Ajax Systems</title>
+    <title>Тестування - Охорона Праці</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
             background-color: #000;
             color: #fff;
-            margin: 0;
-            padding: 10px;
         }
-
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
-            padding-top: 5px; /* Мінімізували відступ зверху */
+            border: 2px solid #fff;
+            padding: 20px;
         }
-
         h1 {
-            font-size: 1.1em;
+            font-size: 1.5em;
             text-align: center;
             text-transform: uppercase;
-            margin: 10px 0 20px 0;
-            border-bottom: 1px solid #333;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #fff;
             padding-bottom: 10px;
         }
-
-        .instruction-card {
-            background: #111;
-            border: 1px solid #333;
-            padding: 15px;
-            margin-bottom: 15px;
+        .input-group {
+            margin-bottom: 30px;
         }
-
-        .instruction-title {
+        label.main-label {
             display: block;
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 12px;
-        }
-
-        /* Плеєр на всю ширину */
-        audio {
-            width: 100%; 
-            height: 45px;
-            filter: invert(100%); /* Щоб плеєр був світлим на чорному */
             margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
         }
-
-        /* Ряд з керуванням швидкістю */
-        .speed-controls {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-top: 1px solid #222;
-            padding-top: 10px;
-        }
-
-        .speed-display {
-            font-size: 0.9em;
-            color: #aaa;
-        }
-
-        .speed-display span {
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #111;
+            border: 1px solid #fff;
             color: #fff;
-            font-weight: bold;
             font-size: 1.1em;
+            box-sizing: border-box;
         }
-
-        .speed-btn-group {
-            display: flex;
-            gap: 12px;
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px dashed #444;
         }
-
-        .speed-btn {
-            background: #fff;
-            color: #000;
-            border: none;
-            width: 45px; /* Великі кнопки для пальців */
-            height: 45px;
-            font-size: 1.4em;
+        .question p {
+            font-size: 1.1em;
+            margin-top: 0;
             font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-
-        .btn-test {
+        .options label {
+            display: block;
+            font-weight: normal;
+            font-size: 1em;
+            cursor: pointer;
+            padding: 8px;
+            transition: background 0.2s;
+        }
+        .options label:hover {
+            background: #222;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        .btn-submit {
             display: block;
             width: 100%;
             background-color: #ffcc00;
             color: #000;
-            text-align: center;
             padding: 15px;
-            text-decoration: none;
+            border: none;
             font-weight: bold;
-            margin-top: 20px;
+            font-size: 1.2em;
+            cursor: pointer;
             text-transform: uppercase;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .btn-submit:hover:not(:disabled) {
+            background-color: #e6b800;
+        }
+        /* Стиль для заблокованої кнопки (крапку додано!) */
+        .btn-submit:disabled {
+            background-color: #555 !important;
+            color: #888;
+            cursor: not-allowed;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ccc;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Порядок надання домедичної допомоги</h1>
+    <a href="index.html" class="back-link">← Назад до інструкцій</a>
+    <h1>Тестування знань</h1>
 
-    <div class="instruction-card">
-        <span class="instruction-title">1. Вступ</span>
-        <audio id="audio-1" controls src="https://raw.githubusercontent.com/shylovak-spec/Audio_Assetss/main/audio/vstup.mp3"></audio>
-        <div class="speed-controls">
-            <div class="speed-display">Швидкість: <span id="speed-val-1">1.00</span></div>
-            <div class="speed-btn-group">
-                <button class="speed-btn" onclick="changeSpeed('audio-1', 'speed-val-1', -0.25)">-</button>
-                <button class="speed-btn" onclick="changeSpeed('audio-1', 'speed-val-1', 0.25)">+</button>
+    <form id="quiz-form">
+        <div class="input-group">
+            <label for="surname" class="main-label">Ваше Прізвище:</label>
+            <input type="text" id="surname" name="surname" required placeholder="Введіть прізвище...">
+        </div>
+
+        <div id="questions-container">
+            <div class="question">
+                <p>1. Для чого проводиться інструктаж за ІОП №3 працівникам, які не обслуговують електроустановки?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="1" required> Для присвоєння І групи з електробезпеки</label>
+                    <label><input type="radio" name="q1" value="0"> Для допуску до ремонту розеток</label>
+                    <label><input type="radio" name="q1" value="0"> Для роботи на висоті</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>2. Яка головна вимога безпеки при роботі з ізопропіловим спиртом?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="0" required> Підігріти рідину перед використанням</label>
+                    <label><input type="radio" name="q2" value="1"> Працювати у добре вентильованому приміщенні подалі від вогню</label>
+                    <label><input type="radio" name="q2" value="0"> Використовувати спирт у закритих приміщеннях</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>3. Яка гранична норма піднімання вантажу при чергуванні з іншою роботою встановлена для жінок (понад 18 років)?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="0" required> 15 кг</label>
+                    <label><input type="radio" name="q3" value="1"> 10 кг</label>
+                    <label><input type="radio" name="q3" value="0"> 20 кг</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>4. Що категорично заборонено робити з електричними обігрівачами в робочій зоні?</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="1" required> Накривати їх сторонніми предметами або одягом</label>
+                    <label><input type="radio" name="q4" value="0"> Вмикати в розетку</label>
+                    <label><input type="radio" name="q4" value="0"> Ставити на підлогу</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>5. Що забороняється користувачу ПЕОМ (комп'ютера) згідно з інструкцією?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="0" required> Дивитися на монітор під прямим кутом</label>
+                    <label><input type="radio" name="q5" value="0"> Робити перерви в роботі</label>
+                    <label><input type="radio" name="q5" value="1"> Самостійно ремонтувати апаратуру або класти напої поруч із клавіатурою</label>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="instruction-card">
-        <span class="instruction-title">2. Зупинка кровообігу</span>
-        <audio id="audio-2" controls src="https://raw.githubusercontent.com/shylovak-spec/Audio_Assetss/main/audio/iop3.mp3"></audio>
-        <div class="speed-controls">
-            <div class="speed-display">Швидкість: <span id="speed-val-2">1.00</span></div>
-            <div class="speed-btn-group">
-                <button class="speed-btn" onclick="changeSpeed('audio-2', 'speed-val-2', -0.25)">-</button>
-                <button class="speed-btn" onclick="changeSpeed('audio-2', 'speed-val-2', 0.25)">+</button>
-            </div>
-        </div>
-    </div>
-
-    <a href="test.html" class="btn-test">Перейти до тестування</a>
+        <button type="submit" class="btn-submit" id="submit-btn">Відправити результат</button>
+    </form>
 </div>
 
 <script>
-    function changeSpeed(audioId, spanId, delta) {
-        const audio = document.getElementById(audioId);
-        const span = document.getElementById(spanId);
-        let newSpeed = audio.playbackRate + delta;
+    document.getElementById('quiz-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('submit-btn');
+        const surnameField = document.getElementById('surname');
+        const surname = surnameField.value;
         
-        if (newSpeed >= 0.5 && newSpeed <= 2.0) {
-            audio.playbackRate = newSpeed;
-            span.innerText = newSpeed.toFixed(2);
+        // Змінюємо стан кнопки
+        submitBtn.disabled = true;
+        submitBtn.innerText = "ВІДПРАВКА...";
+
+        const formData = new FormData(e.target);
+        let score = 0;
+        let totalQuestions = 5; 
+
+        for (let pair of formData.entries()) {
+            if (pair[1] === "1") {
+                score++;
+            }
         }
-    }
+
+        const percentage = Math.round((score / totalQuestions) * 100);
+        const data = { surname: surname, percentage: percentage };
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzpPSAeW-RQmdQcO-nB5LCwqf2f-mLOKpLunaL7DtuQS5KIBUFfyNyroucHSsbIaEwigQ/exec';
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            submitBtn.innerText = "ГОТОВО!";
+            submitBtn.style.backgroundColor = "#28a745"; 
+            
+            setTimeout(() => {
+                alert(`Дякуємо, ${surname}! Ваш результат: ${percentage}%. Дані збережено.`);
+                window.location.href = 'index.html';
+            }, 500);
+        })
+        .catch(error => {
+            console.error('Помилка!', error);
+            alert('Сталася помилка при відправці.');
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Відправити результат";
+        });
+    });
 </script>
 
 </body>
