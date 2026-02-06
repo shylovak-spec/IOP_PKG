@@ -81,16 +81,18 @@
             cursor: pointer;
             text-transform: uppercase;
             margin-top: 20px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease; /* плавна зміна кольору */
         }
+
         .btn-submit:hover:not(:disabled) {
             background-color: #e6b800;
         }
-        /* Стиль для заблокованої кнопки (крапку додано!) */
         .btn-submit:disabled {
-            background-color: #555 !important;
-            color: #888;
-            cursor: not-allowed;
+            background-color: #444444 !important; /* Темно-сірий */
+            color: #888888 !important;         /* Світло-сірий текст */
+            cursor: not-allowed !important;
+            opacity: 0.7;                     /* Напівпрозорість */
+            border: 1px solid #666 !important;
         }
         .back-link {
             display: inline-block;
