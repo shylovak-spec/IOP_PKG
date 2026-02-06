@@ -17,15 +17,6 @@
             max-width: 600px;
             margin: 0 auto;
         }
-        h1 {
-            font-size: 1.1em;
-            text-align: center;
-            text-transform: uppercase;
-            color: #fff;
-            margin: 10px 0 20px 0; /* Менше місця зверху */
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-        }
         .audio-item {
             border: 1px solid #333;
             padding: 15px;
@@ -44,7 +35,6 @@
             filter: invert(100%); /* Робимо плеєр світлим */
             margin-bottom: 10px;
         }
-        /* Новий контейнер швидкості - під плеєром */
         .speed-control {
             display: flex;
             align-items: center;
@@ -71,8 +61,8 @@
             background-color: #fff;
             color: #000;
             border: none;
-            width: 35px; /* Велика область для натискання */
-            height: 35px;
+            width: 30px; /* Велика область для натискання */
+            height: 30px;
             cursor: pointer;
             font-weight: bold;
             font-size: 1.4em;
@@ -80,23 +70,47 @@
             align-items: center;
             justify-content: center;
         }
-        .back-button {
-            font-size: 2em;
-            text-decoration: none;
-            color: #fff;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 5px;
-        }
+        /* Контейнер для стрілки та заголовка */
+.header-row {
+    display: flex;
+    align-items: center; /* Вирівнювання по вертикалі */
+    justify-content: flex-start; /* Елементи йдуть один за одним */
+    gap: 15px; /* Відступ між стрілкою та текстом */
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.back-button {
+    font-size: 2em;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1; /* Прибирає зайву висоту рядка */
+    display: block;
+    margin-top: -4px;
+}
+
+h1 {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0; /* Прибираємо стандартні відступи */
+    flex: 1; /* Дозволяє заголовку займати вільний простір */
+    text-align: left; /* Текст тепер зліва, поруч зі стрілкою */
+}
     </style>
 </head>
 <body>
 
     <div class="container">
+    <div class="header-row">
         <a href="index.html" class="back-button">&#10094;</a>
         <h1>Порядок надання домедичної допомоги</h1>
-        <div id="audio-list-container"></div>
     </div>
+    
+    <div id="audio-list-container"></div>
+</div>
 
     <script>
     const BASE_AUDIO_URL = 'https://raw.githubusercontent.com/shylovak-spec/Audio_Assetss/main/audio/'; 
