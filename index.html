@@ -3,240 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Інструкції з Охорони Праці</title>
+    <title>Аудіоінструкції - Ajax Systems</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 20px 0 120px;
             background-color: #000;
             color: #fff;
+            margin: 0;
+            padding: 10px;
         }
+
         .container {
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
-            border: 2px solid #fff;
-            padding: 20px;
+            padding-top: 5px; /* Мінімізували відступ зверху */
         }
+
         h1 {
-            font-size: 1.3em; 
+            font-size: 1.1em;
             text-align: center;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin: 10px 0 20px 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
         }
 
-        /* Стилі для нової кнопки тестування */
-        .test-button-container {
-            text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #444;
-        }
-        .btn-test {
-            display: inline-flex;
-            align-items: center;
-            background-color: #ffcc00; /* Яскравий колір для уваги */
-            color: #000;
-            padding: 12px 25px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            font-size: 1.1em;
-            transition: transform 0.2s, background-color 0.2s;
-        }
-        .btn-test:hover {
-            background-color: #e6b800;
-            transform: scale(1.05);
-        }
-        .btn-test svg {
-            margin-right: 10px;
+        .instruction-card {
+            background: #111;
+            border: 1px solid #333;
+            padding: 15px;
+            margin-bottom: 15px;
         }
 
-        ol {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            padding: 15px 10px;
-            border-bottom: 1px dashed #444;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            font-size: 1.1em;
-        }
-        li:hover {
-            background-color: #222;
-        }
-        li:last-child {
-            border-bottom: none;
-        }
-        a.instruction-link {
-            color: #fff;
-            text-decoration: none;
+        .instruction-title {
             display: block;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 12px;
         }
-        #audio-controls-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #111;
-            border-top: 2px solid #fff;
-            padding: 10px 20px;
-            box-sizing: border-box;
-            display: none;
-            z-index: 1000;
-        }
-        #audio-player {
-            width: 100%;
+
+        /* Плеєр на всю ширину */
+        audio {
+            width: 100%; 
+            height: 45px;
+            filter: invert(100%); /* Щоб плеєр був світлим на чорному */
             margin-bottom: 10px;
         }
-        .speed-control {
+
+        /* Ряд з керуванням швидкістю */
+        .speed-controls {
             display: flex;
             align-items: center;
-            justify-content: flex-end; 
+            justify-content: space-between;
+            border-top: 1px solid #222;
+            padding-top: 10px;
         }
-        .speed-control button {
-            background-color: #fff;
-            color: #000;
-            border: 1px solid #000;
-            padding: 8px 15px;
-            cursor: pointer;
-            margin-left: 10px;
+
+        .speed-display {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        .speed-display span {
+            color: #fff;
             font-weight: bold;
             font-size: 1.1em;
-            transition: background-color 0.2s;
         }
-        .speed-control button:hover {
-            background-color: #ccc;
+
+        .speed-btn-group {
+            display: flex;
+            gap: 12px;
         }
-        .speed-display {
+
+        .speed-btn {
+            background: #fff;
+            color: #000;
+            border: none;
+            width: 45px; /* Великі кнопки для пальців */
+            height: 45px;
+            font-size: 1.4em;
             font-weight: bold;
-            font-size: 1.2em;
-            width: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-test {
+            display: block;
+            width: 100%;
+            background-color: #ffcc00;
+            color: #000;
             text-align: center;
-        }
-        .active-instruction {
-            background-color: #444;
+            padding: 15px;
+            text-decoration: none;
             font-weight: bold;
+            margin-top: 20px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Інструкції з охорони праці <br> дільниця Пакування</h1>
+<div class="container">
+    <h1>Порядок надання домедичної допомоги</h1>
 
-        <div class="test-button-container">
-            <a href="test.html" class="btn-test">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 11l3 3L22 4"></path>
-                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                </svg>
-                ПРОЙТИ ТЕСТУВАННЯ
-            </a>
-        </div>
-
-        <ol id="instruction-list">
-            <li data-file="vstup">Вступ</li>
-            <li data-file="iop3"> ІОП №3 Для присвоєння 1 групи з електробезпеки</li>
-            <li data-file="iop5"> ІОП №5 При користуванні електропобутовими приладами та офісною оргтехнікою</li>
-            <li data-file="iop11"> ІОП №11 При роботі з ізопропиловим спиртом</li>
-            <li data-file="iop13"> ІОП №13 При роботі з ручними візками</li>
-            <li data-file="iop14"> ІОП №14 При виконанні вантажно-розвантажувальних робіт</li>
-            <li data-file="iop17"> ІОП №17 Для комплектувальника</li>
-            <li data-file="iop41"> ІОП №41 Для оператора лінії (сортувальника)</li>
-            <li data-file="iop47"> ІОП №47 Для користувача ПЕОМ</li>
-            <li><a href="first_aid.html" class="instruction-link"> Порядок надання домедичної допомоги</a></li>
-        </ol>
-    </div>
-
-    <div id="audio-controls-container">
-        <audio id="audio-player" controls preload="metadata"></audio>
-        <div class="speed-control">
-            <span>Швидкість:</span>
-            <div>
-                <span id="speed-display" class="speed-display">1.00</span>
-                <button onclick="adjustSpeed(-0.25)">-</button>
-                <button onclick="adjustSpeed(0.25)">+</button>
+    <div class="instruction-card">
+        <span class="instruction-title">1. Вступ</span>
+        <audio id="audio-1" controls src="https://raw.githubusercontent.com/shylovak-spec/Audio_Assetss/main/audio/vstup.mp3"></audio>
+        <div class="speed-controls">
+            <div class="speed-display">Швидкість: <span id="speed-val-1">1.00</span></div>
+            <div class="speed-btn-group">
+                <button class="speed-btn" onclick="changeSpeed('audio-1', 'speed-val-1', -0.25)">-</button>
+                <button class="speed-btn" onclick="changeSpeed('audio-1', 'speed-val-1', 0.25)">+</button>
             </div>
         </div>
     </div>
 
-    <script>
-    const audioPlayer = document.getElementById('audio-player');
-    const audioContainer = document.getElementById('audio-controls-container');
-    const speedDisplay = document.getElementById('speed-display');
-    const instructionListItems = document.querySelectorAll('.container li[data-file]');
-    
-    let currentActiveItem = null;
-    
-    const BASE_AUDIO_URL = 'https://raw.githubusercontent.com/shylovak-spec/Audio_Assetss/main/audio/';
-    
-    instructionListItems.forEach(item => {
-        item.addEventListener('click', function() {
-            loadAndPlay(this.getAttribute('data-file'), this);
-        });
-    });
+    <div class="instruction-card">
+        <span class="instruction-title">2. Зупинка кровообігу</span>
+        <audio id="audio-2" controls src="https://raw.githubusercontent.com/shylovak-spec/Audio_Assetss/main/audio/iop3.mp3"></audio>
+        <div class="speed-controls">
+            <div class="speed-display">Швидкість: <span id="speed-val-2">1.00</span></div>
+            <div class="speed-btn-group">
+                <button class="speed-btn" onclick="changeSpeed('audio-2', 'speed-val-2', -0.25)">-</button>
+                <button class="speed-btn" onclick="changeSpeed('audio-2', 'speed-val-2', 0.25)">+</button>
+            </div>
+        </div>
+    </div>
 
-    function loadAndPlay(fileName, listItem) {
-        if (currentActiveItem === listItem && !audioPlayer.paused) {
-            audioPlayer.pause();
-            currentActiveItem.classList.remove('active-instruction');
-            currentActiveItem = null;
-            audioContainer.style.display = 'none';
-            return;
-        }
+    <a href="test.html" class="btn-test">Перейти до тестування</a>
+</div>
 
-        if (currentActiveItem) {
-            currentActiveItem.classList.remove('active-instruction');
-            audioPlayer.pause();
-            audioPlayer.currentTime = 0;
-        }
-
-        currentActiveItem = listItem;
-        currentActiveItem.classList.add('active-instruction');
-        audioContainer.style.display = 'block';
+<script>
+    function changeSpeed(audioId, spanId, delta) {
+        const audio = document.getElementById(audioId);
+        const span = document.getElementById(spanId);
+        let newSpeed = audio.playbackRate + delta;
         
-        const mp3Src = `${BASE_AUDIO_URL}${fileName}.mp3`;
-        const oggSrc = `${BASE_AUDIO_URL}${fileName}.ogg`;
-
-        audioPlayer.innerHTML = `
-            <source src="${mp3Src}" type="audio/mpeg">
-            <source src="${oggSrc}" type="audio/ogg">
-            Ваш браузер не підтримує аудіоформати MP3 чи OGG.
-        `;
-
-        audioPlayer.playbackRate = 1.0;
-        speedDisplay.textContent = '1.00';
-        
-        audioPlayer.load();
-        audioPlayer.play();
-    }
-
-    audioPlayer.onended = function() {
-        if (currentActiveItem) {
-            currentActiveItem.classList.remove('active-instruction');
-            const currentIndex = Array.from(instructionListItems).indexOf(currentActiveItem);
-            if (currentIndex !== -1 && currentIndex < instructionListItems.length - 1) {
-                const nextItem = instructionListItems[currentIndex + 1];
-                loadAndPlay(nextItem.getAttribute('data-file'), nextItem);
-            } else {
-                currentActiveItem = null;
-                audioContainer.style.display = 'none';
-            }
+        if (newSpeed >= 0.5 && newSpeed <= 2.0) {
+            audio.playbackRate = newSpeed;
+            span.innerText = newSpeed.toFixed(2);
         }
-    };
-
-    function adjustSpeed(delta) {
-        let newSpeed = audioPlayer.playbackRate + delta;
-        if (newSpeed < 0.75) newSpeed = 0.75;
-        if (newSpeed > 1.5) newSpeed = 1.5;
-        audioPlayer.playbackRate = newSpeed;
-        speedDisplay.textContent = newSpeed.toFixed(2);
     }
-    
-    window.adjustSpeed = adjustSpeed; 
 </script>
 
 </body>
